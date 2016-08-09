@@ -1,0 +1,59 @@
+body {
+	font-family: Miryo, Arial;
+	line-height: 1.3;
+	font-size: 13.5px;
+	width: 600px;
+	margin: 0 auto;
+}
+
+table {
+	width: 600px;
+	background: #d8d8d8;
+}
+
+th {
+	padding: 0 8px;
+}
+
+td {
+	padding: 0 8px;
+	background: #fff;
+}
+
+tfoot td {
+	background: #ddd;
+}
+
+th.no, th.qty, th.class {
+	width: 15%;
+}
+
+dl.filters {
+	line-height: 1.6;
+}
+
+dl.filters label {
+	color: #3377ee;
+	cursor: #pointer;
+}
+
+dl.filters label:hover {
+	color: #ff5577;
+}
+
+dl.filters dt {
+	width: 100px;
+	float: left;
+}
+
+dl.filters dd {
+	
+}
+
+.num {
+	text-align: right;
+}
+
+div.filters {
+	margin: 16px 0;
+}

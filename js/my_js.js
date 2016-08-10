@@ -1,10 +1,22 @@
+var saveKey = 'test';
+
 function exec() {
-	initTable(st_dataArray);
+	initTable();
 }
 
-function initTable(dataArray) {
+function initTable() {
+	var dataArray;
+	if(localStorage.getItem(saveKey) != null) {
+		dataArray = JSON.parse(localStorage.getItem(saveKey));
+	} else {
+		dataArray = origin_dataArray;
+	}
 	createTable(dataArray);
 	initFilter();
+}
+
+function saveData() {
+	localStorage.setItem(saveKey, JSON.stringify(handsonTable.getData()));
 }
 
 function getCSVFile() {

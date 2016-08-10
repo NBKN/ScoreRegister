@@ -2,7 +2,7 @@ var handsonTable;
 
 function createTable(dataArray) {
 	var gridContainer = document.getElementById('grid');
-	table = new Handsontable(gridContainer, {
+	handsonTable = new Handsontable(gridContainer, {
 		data : dataArray,
 		startRows : 10,
 		startCols : 10,

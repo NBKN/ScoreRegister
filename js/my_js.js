@@ -5,7 +5,6 @@ function exec() {
 function initTable(dataArray) {
 	createTable(dataArray);
 	initFilter();
-	$('htCore').exTableFilter();
 }
 
 function getCSVFile() {

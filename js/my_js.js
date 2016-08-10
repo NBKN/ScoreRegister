@@ -1,5 +1,11 @@
 function exec() {
-	getCSVFile()();
+	initTable(st_dataArray);
+}
+
+function initTable(dataArray) {
+	createTable(dataArray);
+	initFilter();
+	$('htCore').exTableFilter();
 }
 
 function getCSVFile() {
@@ -18,10 +24,4 @@ function convertCSV2Array(csvData) {
 		csvArray[i] = tempArray[i].split(",");
 	}
 	initTable(csvArray);
-}
-
-function initTable(dataArray) {
-	createTable(dataArray);
-	initFilter();
-	$('htCore').exTableFilter();
 }

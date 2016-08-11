@@ -3,7 +3,8 @@
 <head>
 <meta charset='utf-8'>
 <title>成績入力</title>
-<script type="text/javascript" charset="utf-8" src="data/original_data.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="data/original_data.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script
@@ -11,22 +12,30 @@
 <script type="text/javascript" charset="utf-8" src="js/handsontable.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/table_filter.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/my_js.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/make_printpage.js"></script>
 <link rel="stylesheet" media="screen"
 	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.css">
-<link rel="stylesheet" type="text/css" href="css/my_style.css">
+<link rel="stylesheet" type="text/css" href="css/table_filter_style.css">
+<link rel="stylesheet" type="text/css" href="css/print_style.css">
 </head>
 <body>
-	<h1>タイトル2</h1>
-	<dl class="filters">
-		<dt>名前で検索：</dt>
-		<dd>
-			<input id="name-filter" />
-		</dd>
-	</dl>
-	<button id="saveBtn" onclick="saveData()">保存</button>
-	<div id="grid"></div>
+	<div class="noprint">
+		<h1>タイトル2</h1>
+		<dl class="filters">
+			<dt>名前で検索：</dt>
+			<dd>
+				<input id="name-filter" />
+			</dd>
+		</dl>
+		<button onclick="saveData()">保存</button>
+		<button onclick="doPrint()">印刷</button>
+		<div id="grid"></div>
+	</div>
 	<script>
 		exec();
 	</script>
+	<div class="print_part">
+		<article id="article"></article>
+	</div>
 </body>
 </html>

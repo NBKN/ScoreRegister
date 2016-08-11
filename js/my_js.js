@@ -6,7 +6,7 @@ function exec() {
 
 function initTable() {
 	var dataArray;
-	if(localStorage.getItem(saveKey) != null) {
+	if (localStorage.getItem(saveKey) != null) {
 		dataArray = JSON.parse(localStorage.getItem(saveKey));
 	} else {
 		dataArray = origin_dataArray;

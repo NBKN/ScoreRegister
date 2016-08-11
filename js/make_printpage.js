@@ -1,7 +1,4 @@
-/**
- * 各会員の印刷ページを作成
- */
-function makePrintSection() {
+function doPrint() {
 	var st_dataArray = [
 			[ "000", "name0", "英語,100,50,1,40,50", "国語,200,50,2,40,50",
 					"数1A,300,50,3,40,50", "数2B,400,50,4,40,50",
@@ -11,18 +8,29 @@ function makePrintSection() {
 			[ "001", "name1", "英語,100,50,1,40,50", "国語,200,50,2,40,50" ],
 			[ "002", "name2", "英語,100,50,1,40,50", "数1A,300,50,3,40,50",
 					"数2B,400,50,4,40,50", "生物, 700, 50,7,40,50" ] ];
+	makePrintSection(st_dataArray);
+}
 
+/**
+ * 各会員の印刷ページを作成
+ */
+function makePrintSection(st_dataArray) {
 	var article = document.getElementById("article");
 	st_dataArray.forEach(function(st_data) {
 		var sectionElement = document.createElement("section");
 		sectionElement.className = 'print_page';
-		sectionElement.innerHTML = '<h1>成績表</h1>';
+		sectionElement.innerHTML = '<h1 class="print_title">成績表</h1>';
 
 		sectionElement.appendChild(makeMemberInfo(st_data));
 		sectionElement.appendChild(makeScoreInfo(st_data));
 
 		article.appendChild(sectionElement);
 	});
+
+	window.print();
+	setTimeout(function() {
+		article.innerHTML = '';
+	}, 0);
 }
 
 /**

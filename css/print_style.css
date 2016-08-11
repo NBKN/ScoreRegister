@@ -8,10 +8,10 @@
 	page-break-after: auto;
 }
 
-.print {
-	border: 1px #000000 solid;
-	margin: 100px;
-	padding: 50px;
+@media print {
+	.noprint {
+		display: none;
+	}
 }
 
 .member_info {
@@ -57,6 +57,6 @@
 	padding: 0px;
 }
 
-h1 {
+.print_title {
 	font-size: 50px;
 }

@@ -5,30 +5,50 @@
 <title>成績入力</title>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/static_values.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="js/setting/data_setting.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="js/setting/item_setting.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/admin.js"></script>
 <link rel="stylesheet" type="text/css" href="css/tab_style.css">
+<link rel="stylesheet" media="screen"
+	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.css">
 </head>
 <body onload="init()">
 	<div>
 		<h1>管理画面</h1>
-		<a href="index.html" style="position: absolute; right: 50px; top: 50px">入力画面</a>
+		<a href="index.html"
+			style="position: absolute; right: 50px; top: 50px">入力画面</a>
 		<div class="tabmenu">
 			<label> <input name="tab" type="radio" checked> <em>データ管理</em>
-				<span>
-					<div>
-						<p>データ読み込み</p>
-						<div id="droppable" style="border: gray solid 1em; padding: 2em;">
-							ファイルをドロップしてください</div>
-						<input type="file" id="import"><br />
-					</div>
-					<div>
-						<p>データエクスポート</p>
-						<a id="download" href="#" download="score_data.csv" onclick="exportData()">エクスポート</a>
-					</div>
+				<span class="tab_span">
+					<ul>
+						<li>
+							<p>データ読み込み</p>
+							<div id="droppable" style="border: gray solid 1em; padding: 2em;">
+								ファイルをドロップしてください</div> <input type="file" id="import"><br />
+						</li>
+						<li>
+							<p>データエクスポート</p> <a id="download" href="#"
+							download="score_data.csv" onclick="exportData()">エクスポート</a>
+						</li>
+						<li>
+							<p>データ削除</p>
+							<p>ブラウザに保存されているデータを削除します。</p> <a id="delete" href="#"
+							onclick="deleteData()">削除</a>
+						</li>
+					</ul>
+
 			</span>
-			</label> <label> <input name="tab" type="radio"> <em>MENU2</em><span>TEXT2</span></label>
-			<label> <input name="tab" type="radio"> <em>MENU3</em><span>TEXT3</span>
+			</label> <label> <input name="tab" type="radio"> <em>項目</em>
+				<span class="tab_span">
+					<button onclick="saveHeaderData()" style="margin:20px">保存</button>
+					<div id="item_setting"></div>
+			</span></label> <label> <input name="tab" type="radio"> <em>MENU3</em><span
+				class="tab_span">TEXT3</span>
 			</label>
 		</div>
 	</div>

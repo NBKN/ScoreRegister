@@ -1,12 +1,38 @@
+var handsonTable;
+var SCORE_SAVEKEY = 'test2';
+var HEADER_SAVEKEY = 'header2';
 
-var SAVEKEY = 'test2';
-
-function saveData(dataArray) {
-	localStorage.setItem(SAVEKEY, JSON.stringify(dataArray));
+function saveLocalStorage_Score(dataArray) {
+	localStorage.setItem(SCORE_SAVEKEY, JSON.stringify(dataArray));
 }
 
-function loadData() {
-	return JSON.parse(localStorage.getItem(SAVEKEY));
+function loadLocalStorage_Score() {
+	return JSON.parse(localStorage.getItem(SCORE_SAVEKEY));
+}
+
+function loadLocalStorage_Header() {
+	return JSON.parse(localStorage.getItem(HEADER_SAVEKEY));
+}
+
+function loadHedersInfo() {
+	var defaultData = [ [ '会員番号', true, 'text' ], [ '名前', true, 'text' ],
+			[ '英語', false, 'numeric' ], [ '国語', false, 'numeric' ],
+			[ '数ⅠA', false, 'numeric' ], [ '数ⅡB', false, 'numeric' ],
+			[ '物理', false, 'numeric' ], [ '化学', false, 'numeric' ],
+			[ '生物', false, 'numeric' ], [ '日本史', false, 'numeric' ],
+			[ '世界史', false, 'numeric' ] ];
+
+	var headerData = loadLocalStorage_Header();
+	if (headerData == null) {
+		headerData = defaultData;
+	}
+	return headerData;
+}
+
+function removeNullFromArray(array) {
+	return array.filter(function(elem) {
+		return elem;
+	});
 }
 
 function convertCSV2Array(csvData) {

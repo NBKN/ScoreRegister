@@ -3,17 +3,16 @@ function exec() {
 }
 
 function initTable() {
-	var dataArray;
-	if (localStorage.getItem(SAVEKEY) != null) {
-		dataArray = loadData();
+	var dataArray = loadLocalStorage_Score();
+	if (dataArray != null) {
+		createTable(dataArray);
+		initFilter();
 	} else {
-		dataArray = origin_dataArray;
+		alert('データがありません。\n管理画面から読み込んでください。')
 	}
-	createTable(dataArray);
-	initFilter();
 }
 
 function save() {
 	var arrayData = handsonTable.getData();
-	saveData(arrayData);
+	saveLocalStorage_Score(arrayData);
 }

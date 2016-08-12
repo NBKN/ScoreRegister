@@ -1,0 +1,66 @@
+.tabmenu {
+	top: 30px;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+}
+
+.tabmenu span {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	display: block;
+	margin: 4px 0 0;
+	padding: 10px;
+	width: 100%;
+	border: 1px solid #0ae;
+	-webkit-border-radius: 0 6px 6px 6px;
+	border-radius: 0 6px 6px 6px;
+	font-size: 14px;
+}
+
+.tabmenu input[type="radio"] {
+	display: none;
+}
+
+.tabmenu input[type="radio"]+em {
+	position: relative;
+	z-index: 100;
+	display: inline-block;
+	margin: 0 4px 0 0;
+	padding: 4px 0 0;
+	min-width: 80px;
+	-webkit-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+	background: #ddd;
+	color: #000;
+	text-align: center;
+	font-size: 14px;
+	font-style: normal;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.tabmenu input[type="radio"]:checked+em {
+	background: #0ae;
+	color: #fff;
+}
+
+.tabmenu input[type="radio"]:checked+em::after {
+	position: absolute;
+	left: 50%;
+	display: block;
+	margin-left: -9px;
+	border: 9px solid transparent;
+	border-top: 9px solid #0ae;
+	content: "";
+}
+
+.tabmenu input[type="radio"]+em ~ span {
+	display: none;
+}
+
+.tabmenu input[type="radio"]:checked+em ~ span {
+	display: block;
+}

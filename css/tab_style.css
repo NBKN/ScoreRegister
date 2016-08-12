@@ -6,7 +6,7 @@
 	font-size: 0;
 }
 
-.tabmenu span {
+.tab_span {
 	position: absolute;
 	top: 30px;
 	left: 0;
@@ -57,10 +57,10 @@
 	content: "";
 }
 
-.tabmenu input[type="radio"]+em ~ span {
+.tabmenu input[type="radio"]+em ~ .tab_span {
 	display: none;
 }
 
-.tabmenu input[type="radio"]:checked+em ~ span {
+.tabmenu input[type="radio"]:checked+em ~ .tab_span {
 	display: block;
 }

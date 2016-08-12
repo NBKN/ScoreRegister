@@ -1,6 +1,23 @@
-var handsonTable;
+
+var headerTitle = [];
+var columsOption = [];
+
+function getHedersInfo() {
+	var headersInfoArray = loadHedersInfo();
+
+	headersInfoArray.forEach(function(hedersInfo) {
+		headerTitle.push(hedersInfo[0]);
+		var option = {};
+		option['readOnly'] = hedersInfo[1];
+		option['type'] = hedersInfo[2];
+		columsOption.push(option);
+	});
+	headerTitle = removeNullFromArray(headerTitle);
+	columsOption = removeNullFromArray(columsOption);
+}
 
 function createTable(dataArray) {
+	getHedersInfo();
 	var gridContainer = document.getElementById('grid');
 	handsonTable = new Handsontable(gridContainer, {
 		data : dataArray,
@@ -10,39 +27,7 @@ function createTable(dataArray) {
 		colHeaders : true,
 		minSpareRows : 1,
 		fillHandle : true,
-		colHeaders : [ '会員番号', '名前', '英語', '国語', '数ⅠA', '数ⅡB', '物理', '化学',
-				'生物', '日本史', '世界史' ],
-		columns : [ {
-			"readOnly" : true
-		}, {
-			"readOnly" : true
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		}, {
-			"readOnly" : false,
-			type : 'numeric'
-		} ]
+		colHeaders : headerTitle,
+		columns : columsOption
 	});
 }

@@ -75,3 +75,7 @@ function initDroppable() {
 	}
 	droppable.bind("drop", handleDroppedFile);
 }
+
+function deleteData() {
+	localStorage.removeItem(SAVEKEY);
+}

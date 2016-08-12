@@ -1,6 +1,6 @@
 var handsonTable;
 var SCORE_SAVEKEY = 'test2';
-var HEADER_SAVEKEY = 'header2';
+var HEADER_SAVEKEY = 'header3';
 
 function saveLocalStorage_Score(dataArray) {
 	localStorage.setItem(SCORE_SAVEKEY, JSON.stringify(dataArray));

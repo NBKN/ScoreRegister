@@ -104,9 +104,7 @@ function makeTableRow(tag, item) {
  */
 function makePrintData() {
 	var cols = handsonTable.countCols();
-	var memberSize = handsonTable.getDataAtCol(0).filter(function(elem) {
-		return elem;
-	}).length;
+	var memberSize = removeNullFromArray(handsonTable.getDataAtCol(0)).length;
 
 	var aveArray = [];
 	var mediArray = [];
@@ -115,10 +113,7 @@ function makePrintData() {
 
 	for (var subjectIndex = 2; subjectIndex < cols; subjectIndex++) {
 		var subjectName = handsonTable.getColHeader(subjectIndex);
-		scoreArray[subjectName] = handsonTable.getDataAtCol(subjectIndex)
-				.filter(function(elem) {
-					return elem;
-				});
+		scoreArray[subjectName] = removeNullFromArray(handsonTable.getDataAtCol(subjectIndex));
 
 		if (scoreArray[subjectName].length > 0) {
 			aveArray[subjectName] = average(scoreArray[subjectName]);

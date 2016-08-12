@@ -9,11 +9,13 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/static_values.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/handsontable.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/table_filter.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/calc.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/my_js.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/make_printpage.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="js/make_printpage.js"></script>
 <link rel="stylesheet" media="screen"
 	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.css">
 <link rel="stylesheet" type="text/css" href="css/table_filter_style.css">
@@ -22,13 +24,15 @@
 <body>
 	<div class="noprint">
 		<h1>タイトル2</h1>
+		<a href="admin.html"
+			style="position: absolute; right: 50px; top: 50px">管理画面</a>
 		<dl class="filters">
 			<dt>名前で検索：</dt>
 			<dd>
 				<input id="name-filter" />
 			</dd>
 		</dl>
-		<button onclick="saveData()">保存</button>
+		<button onclick="save()">保存</button>
 		<button onclick="doPrint()">印刷</button>
 		<div id="grid"></div>
 	</div>

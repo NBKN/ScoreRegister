@@ -12,7 +12,7 @@ function init() {
  */
 function exportData() {
 	var bom = new Uint8Array([ 0xEF, 0xBB, 0xBF ]);
-	var dataArray = JSON.parse(localStorage.getItem(SAVEKEY));
+	var dataArray = loadData();
 	dataArray = convertArray2CSV(dataArray);
 	var blob = new Blob([ bom, dataArray ], {
 		"type" : "text/csv"
@@ -27,8 +27,10 @@ function exportData() {
 	}
 }
 
-function saveData(dataArray) {
-	localStorage.setItem(SAVEKEY, JSON.stringify(dataArray));
+function importData(str) {
+	var dataArray = convertCSV2Array(str);
+	saveData(dataArray);
+	alert('データの読み込みに成功しました！');
 }
 
 /**
@@ -42,8 +44,7 @@ function initFileLoadBtn() {
 		var reader = new FileReader();
 		reader.readAsText(file[0]);
 		reader.onload = function(ev) {
-			var dataArray = convertCSV2Array(reader.result);
-			saveData(dataArray);
+			importData(reader.result);
 		}
 	}, false);
 }
@@ -66,8 +67,7 @@ function initDroppable() {
 		var file = event.originalEvent.dataTransfer.files[0];
 		var fileReader = new FileReader();
 		fileReader.onload = function(event) {
-			var dataArray = convertCSV2Array(event.target.result);
-			saveData(dataArray);
+			importData(event.target.result);
 		}
 		fileReader.readAsText(file);
 		cancelEvent(event);

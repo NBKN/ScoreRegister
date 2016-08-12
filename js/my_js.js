@@ -3,7 +3,7 @@ function exec() {
 }
 
 function initTable() {
-	var dataArray = loadData();
+	var dataArray = loadLocalStorage_Score();
 	if (dataArray != null) {
 		createTable(dataArray);
 		initFilter();
@@ -14,5 +14,5 @@ function initTable() {
 
 function save() {
 	var arrayData = handsonTable.getData();
-	saveData(arrayData);
+	saveLocalStorage_Score(arrayData);
 }

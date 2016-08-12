@@ -12,20 +12,28 @@
 <body onload="init()">
 	<div>
 		<h1>管理画面</h1>
-		<a href="index.html" style="position: absolute; right: 50px; top: 50px">入力画面</a>
+		<a href="index.html"
+			style="position: absolute; right: 50px; top: 50px">入力画面</a>
 		<div class="tabmenu">
 			<label> <input name="tab" type="radio" checked> <em>データ管理</em>
 				<span>
-					<div>
-						<p>データ読み込み</p>
-						<div id="droppable" style="border: gray solid 1em; padding: 2em;">
-							ファイルをドロップしてください</div>
-						<input type="file" id="import"><br />
-					</div>
-					<div>
-						<p>データエクスポート</p>
-						<a id="download" href="#" download="score_data.csv" onclick="exportData()">エクスポート</a>
-					</div>
+					<ul>
+						<li>
+							<p>データ読み込み</p>
+							<div id="droppable" style="border: gray solid 1em; padding: 2em;">
+								ファイルをドロップしてください</div> <input type="file" id="import"><br />
+						</li>
+						<li>
+							<p>データエクスポート</p>
+							<a id="download" href="#" download="score_data.csv" onclick="exportData()">エクスポート</a>
+						</li>
+						<li>
+							<p>データ削除</p>
+							<p>ブラウザに保存されているデータを削除します。</p>
+							<a id="delete" href="#" onclick="deleteData()">削除</a>
+						</li>
+					</ul>
+
 			</span>
 			</label> <label> <input name="tab" type="radio"> <em>MENU2</em><span>TEXT2</span></label>
 			<label> <input name="tab" type="radio"> <em>MENU3</em><span>TEXT3</span>

@@ -8,7 +8,7 @@ function initDataTab() {
  */
 function exportData() {
 	var bom = new Uint8Array([ 0xEF, 0xBB, 0xBF ]);
-	var dataArray = loadScoreData();
+	var dataArray = loadLocalStorage_Score();
 	dataArray = convertArray2CSV(dataArray);
 	var blob = new Blob([ bom, dataArray ], {
 		"type" : "text/csv"
@@ -25,7 +25,7 @@ function exportData() {
 
 function importData(str) {
 	var dataArray = convertCSV2Array(str);
-	saveData(dataArray);
+	saveLocalStorage_Score(dataArray);
 	alert('データの読み込みに成功しました！');
 }
 

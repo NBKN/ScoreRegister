@@ -1,7 +1,5 @@
-
 /**
- * プリント用データフォーマット
- * [ "会員番号", "名前", "科目名1, 得点, 偏差値, 順位, 平均点, 中央値", "科目名2... ], ...
+ * プリント用データフォーマット [ "会員番号", "名前", "科目名1, 得点, 偏差値, 順位, 平均点, 中央値", "科目名2... ], ...
  */
 
 function doPrint() {
@@ -24,8 +22,14 @@ function doPrint() {
  * 各会員の印刷ページを作成
  */
 function makePrintSection(st_dataArray) {
+	var checkBoxArray = checkboxTable.getDataAtCol(0);
 	var article = document.getElementById("article");
-	st_dataArray.forEach(function(st_data) {
+
+	for (var i = 0; i < st_dataArray.length; i++) {
+		if(checkBoxArray[i] == false) {
+			continue;
+		}
+		var st_data = st_dataArray[i];
 		var sectionElement = document.createElement("section");
 		sectionElement.className = 'print_page';
 		sectionElement.innerHTML = '<h1 class="print_title">成績表</h1>';
@@ -34,7 +38,7 @@ function makePrintSection(st_dataArray) {
 		sectionElement.appendChild(makeScoreInfo(st_data));
 
 		article.appendChild(sectionElement);
-	});
+	}
 
 	window.print();
 	setTimeout(function() {
@@ -43,7 +47,7 @@ function makePrintSection(st_dataArray) {
 }
 
 /**
- * 会員情報部テーブル分作成
+ * 会員情報部分テーブル作成
  */
 function makeMemberInfo(st_data) {
 	var memberId = st_data[0];
@@ -113,7 +117,8 @@ function makePrintData() {
 
 	for (var subjectIndex = 2; subjectIndex < cols; subjectIndex++) {
 		var subjectName = handsonTable.getColHeader(subjectIndex);
-		scoreArray[subjectName] = removeNullFromArray(handsonTable.getDataAtCol(subjectIndex));
+		scoreArray[subjectName] = removeNullFromArray(handsonTable
+				.getDataAtCol(subjectIndex));
 
 		if (scoreArray[subjectName].length > 0) {
 			aveArray[subjectName] = average(scoreArray[subjectName]);

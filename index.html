@@ -18,6 +18,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.css">
 <link rel="stylesheet" type="text/css" href="css/table_filter_style.css">
 <link rel="stylesheet" type="text/css" href="css/print_style.css">
+<link rel="stylesheet" type="text/css" href="css/my_css.css">
 </head>
 <body onload="exec()">
 	<div class="noprint">
@@ -30,9 +31,12 @@
 				<input id="name-filter" />
 			</dd>
 		</dl>
-		<button onclick="save()">保存</button>
-		<button onclick="doPrint()">印刷</button>
-		<div id="grid"></div>
+		<div>
+			<button onclick="save()">保存</button>
+			<button onclick="doPrint()">印刷</button>
+		</div>
+		<div id="checkbox_table" class="box"></div>
+		<div id="grid" class="box"></div>
 	</div>
 	<div class="print_part">
 		<article id="article"></article>

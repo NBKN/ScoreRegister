@@ -1,5 +1,5 @@
 var SCORE_SAVEKEY = 'test2';
-var HEADER_SAVEKEY = 'header2';
+var HEADER_SAVEKEY = 'header3';
 
 var handsonTable;
 var checkboxTable;

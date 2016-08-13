@@ -1,6 +1,8 @@
-var handsonTable;
 var SCORE_SAVEKEY = 'test2';
 var HEADER_SAVEKEY = 'header2';
+
+var handsonTable;
+var checkboxTable;
 
 function saveLocalStorage_Score(dataArray) {
 	localStorage.setItem(SCORE_SAVEKEY, JSON.stringify(dataArray));

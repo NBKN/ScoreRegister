@@ -5,8 +5,8 @@ function exec() {
 function initTable() {
 	var dataArray = loadLocalStorage_Score();
 	if (dataArray != null) {
-		initTable();
-		initFilter();
+		initMyTable(dataArray);
+		initMyFilter();
 	} else {
 		alert('データがありません。\n管理画面から読み込んでください。')
 	}

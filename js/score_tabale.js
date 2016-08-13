@@ -1,13 +1,13 @@
 var headerTitle = [];
 var columsOption = [];
 
-function initTable() {
+function initMyTable(dataArray) {
 	createTable(dataArray);
 	createChackBoxTable();
-} 
+}
 
 /**
- * 入力用の表を作成
+ * 表のヘッダー項目を取得
  */
 function getHedersInfo() {
 	var headersInfoArray = loadHedersInfo();
@@ -24,7 +24,7 @@ function getHedersInfo() {
 }
 
 /**
- * 印刷チェックボックス用の表を作成
+ * 入力用の表を作成
  */
 function createTable(dataArray) {
 	getHedersInfo();
@@ -41,17 +41,19 @@ function createTable(dataArray) {
 	});
 }
 
+/**
+ * 印刷チェックボックス用の表を作成
+ */
+var allChecked = [];
 function createChackBoxTable() {
 	var rows = handsonTable.countRows();
-	var data = [];
 	for (var i = 0; i < rows; i++) {
-		var tmp = [ true ];
-		data.push(tmp);
+		allChecked.push([ true ]);
 	}
 
 	var gridContainer = document.getElementById('checkbox_table');
-	var checkboxTable = new Handsontable(gridContainer, {
-		data : data,
+	checkboxTable = new Handsontable(gridContainer, {
+		data : allChecked,
 		startRows : 10,
 		startCols : 10,
 		colHeaders : true,
@@ -59,9 +61,16 @@ function createChackBoxTable() {
 		maxRows : rows,
 		colHeaders : [ '印刷する' ],
 		columns : [ {
-			type : 'checkbox',
-			checkedTemplate : 'yes',
-			uncheckedTemplate : 'no'
+			type : 'checkbox'
 		} ]
 	});
+}
+
+/**
+ * チェックボックスを全件チェックor解除
+ */
+function allCheck(check) {
+	for (var i = 0; i < checkboxTable.countRows(); i++) {
+		checkboxTable.setDataAtCell(i, 0, check);
+	}
 }

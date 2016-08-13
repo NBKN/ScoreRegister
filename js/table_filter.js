@@ -129,7 +129,7 @@
 	}
 })(jQuery);
 
-function initFilter() {
+function initMyFilter() {
 	var json = {}
 	$('table tbody tr').each(function() {
 		json[$(this).find('> td:eq(3)').text() - 0] = '';

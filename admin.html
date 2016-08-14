@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<title>成績入力</title>
+<title>管理画面</title>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script
@@ -16,12 +16,12 @@
 <link rel="stylesheet" type="text/css" href="css/tab_style.css">
 <link rel="stylesheet" media="screen"
 	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.css">
+<link rel="stylesheet" type="text/css" href="css/my_css.css">
 </head>
 <body onload="init()">
 	<div>
 		<h1>管理画面</h1>
-		<a href="index.html"
-			style="position: absolute; right: 50px; top: 50px">入力画面</a>
+		<a href="index.html" class="move_page">>入力画面</a>
 		<div class="tabmenu">
 			<label> <input name="tab" type="radio" checked> <em>データ管理</em>
 				<span class="tab_span">
@@ -45,7 +45,7 @@
 			</span>
 			</label> <label> <input name="tab" type="radio"> <em>項目</em>
 				<span class="tab_span">
-					<button onclick="saveHeaderData()" style="margin:20px">保存</button>
+					<button onclick="saveHeaderData()" style="margin: 20px">保存</button>
 					<div id="item_setting"></div>
 			</span></label> <label> <input name="tab" type="radio"> <em>MENU3</em><span
 				class="tab_span">TEXT3</span>

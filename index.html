@@ -16,35 +16,36 @@
 	src="js/make_printpage.js"></script>
 <link rel="stylesheet" media="screen"
 	href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.26.1/handsontable.full.min.css">
-<link rel="stylesheet" type="text/css" href="css/table_filter_style.css">
 <link rel="stylesheet" type="text/css" href="css/print_style.css">
 <link rel="stylesheet" type="text/css" href="css/my_css.css">
 </head>
 <body onload="exec()">
 	<div class="noprint">
-		<h1>タイトル2</h1>
-		<a href="admin.html"
-			style="position: absolute; right: 50px; top: 50px">管理画面</a>
-		<h3>検索</h3>
-		<dl class="filters">
-			<dt>会員番号：</dt>
-			<dd>
-				<input id="id-filter" />
-			</dd>
-			<dt>名前：</dt>
-			<dd>
-				<input id="name-filter" />
-			</dd>
-		</dl>
-		<div>
-			<button onclick="save()">保存</button>
-			<button onclick="doPrint()">印刷</button>
+		<h1>成績入力</h1>
+		<a href="admin.html" class="move_page">>管理画面</a>
+		<div class="filters">
+			<label>検索</label>
+			<dl>
+				<dt>会員番号：</dt>
+				<dd>
+					<input id="id-filter" />
+				</dd>
+				<dt>名前：</dt>
+				<dd>
+					<input id="name-filter" />
+				</dd>
+			</dl>
 		</div>
-		<div>
-			<input type="checkbox" checked="checked" onclick="allCheck(this.checked)">全件選択</input>
+		<div class="main_contents">
+			<div class="button_area">
+				<input type="checkbox" checked="checked"
+					onclick="allCheck(this.checked)">全件選択</input>
+				<button onclick="doPrint()" class="button_print">印刷</button>
+				<button onclick="save()" class="button_save">保存</button>
+			</div>
+			<div id="checkbox_table" class="checkbox_table"></div>
+			<div id="grid" class="score_table"></div>
 		</div>
-		<div id="checkbox_table" class="box"></div>
-		<div id="grid" class="box"></div>
 	</div>
 	<div class="print_part">
 		<article id="article"></article>

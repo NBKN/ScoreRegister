@@ -27,9 +27,8 @@
 				<span class="tab_span">
 					<ul>
 						<li>
-							<p>データ読み込み</p>
-							<div id="droppable" style="border: gray solid 1em; padding: 2em;">
-								ファイルをドロップしてください</div> <input type="file" id="import"><br />
+							<p>データ読み込み</p> <input type="file" id="import">
+							<div id="droppable" class="droppable">ファイルをドロップしてください</div>
 						</li>
 						<li>
 							<p>データエクスポート</p> <a id="download" href="#"
@@ -37,15 +36,16 @@
 						</li>
 						<li>
 							<p>データ削除</p>
-							<p>ブラウザに保存されているデータを削除します。</p> <a id="delete" href="#"
-							onclick="deleteData()">削除</a>
+							<p>ブラウザに保存されているデータを削除します。</p>
+							<button id="delete" onclick="deleteData()">削除</button>
 						</li>
 					</ul>
-
 			</span>
 			</label> <label> <input name="tab" type="radio"> <em>項目</em>
 				<span class="tab_span">
 					<button onclick="saveHeaderData()" style="margin: 20px">保存</button>
+					<button onclick="resetData()">デフォルトに戻す</button>
+
 					<div id="item_setting"></div>
 			</span></label> <label> <input name="tab" type="radio"> <em>MENU3</em><span
 				class="tab_span">TEXT3</span>

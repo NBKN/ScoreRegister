@@ -69,3 +69,10 @@ h1 {
 	right: 50px;
 	top: 50px"
 }
+
+.droppable {
+	border: gray solid 1em;
+	width: 400px;
+	padding: 2em;
+	margin: 10px 0 10px 0;
+}

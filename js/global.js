@@ -16,17 +16,16 @@ function loadLocalStorage_Header() {
 	return JSON.parse(localStorage.getItem(HEADER_SAVEKEY));
 }
 
+var defaultHeaderData = [ [ '会員番号', true, 'text' ], [ '名前', true, 'text' ],
+		[ '英語', false, 'numeric' ], [ '国語', false, 'numeric' ],
+		[ '数ⅠA', false, 'numeric' ], [ '数ⅡB', false, 'numeric' ],
+		[ '物理', false, 'numeric' ], [ '化学', false, 'numeric' ],
+		[ '生物', false, 'numeric' ], [ '日本史', false, 'numeric' ],
+		[ '世界史', false, 'numeric' ] ];
 function loadHedersInfo() {
-	var defaultData = [ [ '会員番号', true, 'text' ], [ '名前', true, 'text' ],
-			[ '英語', false, 'numeric' ], [ '国語', false, 'numeric' ],
-			[ '数ⅠA', false, 'numeric' ], [ '数ⅡB', false, 'numeric' ],
-			[ '物理', false, 'numeric' ], [ '化学', false, 'numeric' ],
-			[ '生物', false, 'numeric' ], [ '日本史', false, 'numeric' ],
-			[ '世界史', false, 'numeric' ] ];
-
 	var headerData = loadLocalStorage_Header();
 	if (headerData == null) {
-		headerData = defaultData;
+		headerData = defaultHeaderData;
 	}
 	return headerData;
 }

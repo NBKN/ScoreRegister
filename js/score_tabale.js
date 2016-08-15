@@ -39,6 +39,17 @@ function createTable(dataArray) {
 		colHeaders : headerTitle,
 		columns : columsOption
 	});
+	/* 編集するたびに保存する */
+	handsonTable.updateSettings({
+		afterChange : function(changes, source) {
+			save();
+		}
+	});
+}
+
+function save() {
+	var arrayData = handsonTable.getData();
+	saveLocalStorage_Score(arrayData);
 }
 
 /**
@@ -56,10 +67,12 @@ function createChackBoxTable() {
 		data : allChecked,
 		startRows : 10,
 		startCols : 10,
+		colWidths : 30,
+		rowHeigts : handsonTable.getRowHeight(0),
 		colHeaders : true,
 		fillHandle : false,
 		maxRows : rows,
-		colHeaders : [ '印刷する' ],
+		colHeaders : [ '　　　　' ], // 成績入力表のヘッダーの高さと揃えるために空白を入れておく
 		columns : [ {
 			type : 'checkbox'
 		} ]

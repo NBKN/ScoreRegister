@@ -1,17 +1,78 @@
-.box {
+body {
+	width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 50px;
+}
+
+h1 {
+	font-size: 40px;
+	margin-left: -40px;
+	font-style: oblique;
+}
+
+.checkbox_table {
+	float: left;
+	width: 30px;
+}
+
+.score_table {
 	float: left;
 }
 
-.boxContainer {
-	overflow: hidden;
+.score_table span {
+	font-size: 18px;
 }
 
-.boxContainer:before,
-.boxContainer:after {
-    content: "";
-    display: table;
+.score_table td {
+	font-size: 16px;
 }
- 
-.boxContainer:after {
-    clear: both;
+
+.filters {
+	margin: 0 0 20px 0;
+	width: 400px;
+}
+
+.filters label {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.filters dl {
+	margin-left: 10px;
+}
+
+.filters dt {
+	width: 100px;
+	float: left;
+}
+
+.main_contents {
+	width: 700px;
+}
+
+.button_area {
+	width: 100%;
+	margin: 0 0 10px 0;
+}
+
+.button_area button {
+
+}
+
+.button_save {
+	float: right;
+}
+
+.move_page {
+	position: absolute;
+	right: 50px;
+	top: 50px"
+}
+
+.droppable {
+	border: gray solid 1em;
+	width: 400px;
+	padding: 2em;
+	margin: 10px 0 10px 0;
 }

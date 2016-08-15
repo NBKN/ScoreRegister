@@ -21,18 +21,22 @@ function createTable() {
 			type : 'checkbox'
 		}, {
 			editor : 'select',
-			selectOptions : [ 'text', 'numeric']
+			selectOptions : [ 'text', 'numeric' ]
 		} ]
 	});
 }
 
 function saveHeaderData() {
 	var headerInfoArray = itemSettingTable.getData();
-	var saveData = []; 
+	var saveData = [];
 	headerInfoArray.forEach(function(hedersInfo) {
-		if(hedersInfo[0] != null && hedersInfo[0].length > 0) {
+		if (hedersInfo[0] != null && hedersInfo[0].length > 0) {
 			saveData.push(hedersInfo);
 		}
 	});
 	localStorage.setItem(HEADER_SAVEKEY, JSON.stringify(saveData));
+}
+
+function resetData() {
+	itemSettingTable.loadData(defaultHeaderData);
 }

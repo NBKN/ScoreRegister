@@ -11,8 +11,3 @@ function initTable() {
 		alert('データがありません。\n管理画面から読み込んでください。')
 	}
 }
-
-function save() {
-	var arrayData = handsonTable.getData();
-	saveLocalStorage_Score(arrayData);
-}

@@ -1,3 +1,6 @@
+/**
+ * 計算式一覧
+ */
 var standard_score = function(score, allData) {
 	var ave = average(allData);
 	var sd = standard_deviation(allData);

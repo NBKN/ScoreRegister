@@ -1,3 +1,6 @@
+/**
+ * フィルター機能
+ */
 ;
 (function($) {
 	$.fn.simpleTableFilter = function(option) {

@@ -8,6 +8,7 @@ function initTable() {
 		initMyTable(dataArray);
 		initMyFilter();
 	} else {
-		alert('データがありません。\n管理画面から読み込んでください。')
+		alert('データがありません。\n管理画面から読み込んでください。');
+		window.location.href = 'admin.html';
 	}
 }

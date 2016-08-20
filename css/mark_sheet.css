@@ -1,0 +1,80 @@
+.print_page {
+	width: 251mm;
+	height: 172mm;
+	page-break-after: always;
+}
+
+.print_page:last-child {
+	page-break-after: auto;
+}
+
+@media print {
+	.noprint {
+		display: none;
+	}
+}
+
+@media print {
+}
+
+.header_area {
+	width: 251mm;
+	height: 28mm;
+}
+
+.name_area {
+	border-collapse: collapse;
+	border: 1px #000000 solid;
+	width: 60mm;
+	height: 10mm;
+	text-align: center;
+	margin: -0.5mm 0 30px 0;
+	float: right;
+}
+
+.name_area tr th {
+	border: 1px #000000 solid;
+	font-size: 20px;
+	width: 60mm;
+	height: 10mm;
+	padding: 0px;
+}
+
+.name_area tr td {
+	border: 1px #000000 solid;
+	font-size: 15px;
+	height: 10mm;
+	padding: 0px;
+}
+
+.mark_sheet {
+	border-collapse: collapse;
+	border: 1px #000000 solid;
+	text-align: center;
+	font-size: 15px;
+	margin: 5px;
+	float: left;
+}
+
+.mark_sheet table, td, th {
+	border-collapse: collapse;
+	border: 1px solid #333;
+}
+
+.mark_cell {
+	width: 3.5mm;
+	height: 6mm;
+}
+
+.mark_cell_index {
+	width: 4mm;
+	height: 6mm;
+}
+
+.row {
+	
+}
+
+.row:nth-child(even) {
+	background-color: #eee;;
+}

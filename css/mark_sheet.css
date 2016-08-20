@@ -12,9 +12,9 @@
 	.noprint {
 		display: none;
 	}
-}
-
-@media print {
+	.noprint {
+		display: none;
+	}
 }
 
 .header_area {

@@ -79,3 +79,8 @@ function makeTableRow(tag, item, trClass='') {
 	row += "</tr>";
 	return row;
 }
+
+function doPrint() {
+	window.print();
+
+}

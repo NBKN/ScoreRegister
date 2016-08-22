@@ -2,6 +2,7 @@
 	width: 251mm;
 	height: 172mm;
 	page-break-after: always;
+	-webkit-print-color-adjust: exact;
 }
 
 .print_page:last-child {
@@ -20,6 +21,10 @@
 .header_area {
 	width: 251mm;
 	height: 28mm;
+}
+
+.mark_area {
+	margin-left: 50px;
 }
 
 .name_area {
@@ -51,7 +56,7 @@
 	border-collapse: collapse;
 	border: 1px #000000 solid;
 	text-align: center;
-	font-size: 15px;
+	font-size: 50%;
 	margin: 5px;
 	float: left;
 }
@@ -62,17 +67,20 @@
 }
 
 .mark_cell {
-	width: 3.5mm;
-	height: 6mm;
+	width: 12px;
+}
+
+.marked_cell {
+	background-color: black;
+	width: 12px;
 }
 
 .mark_cell_index {
-	width: 4mm;
-	height: 6mm;
+	width: 13px;
 }
 
 .row {
-	
+	height: 25px !important;
 }
 
 .row:nth-child(even) {

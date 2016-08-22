@@ -18,19 +18,23 @@ function createNameArea() {
 }
 
 function createIdArea() {
-	var headerItem = "会員番号";
-	headerItem = makeTableRow('th colspan="7"', headerItem);
-	headerItem += makeTableRow('td class="mark_cell"', ' , , , , , , ');
-	rowItem = makeTableRow('td class="mark_cell"', "0,1,2,3,4,5,6", 'row');
-
-	var memberInfo = headerItem;
-	for (var i=0; i<6; i++) {
-		memberInfo += rowItem;
-	}
 	var tableElement = document.createElement("table");
 	tableElement.className = 'mark_sheet';
-	tableElement.innerHTML = memberInfo;
 
+	var headerItem = '<tr class="row"><td class="marked_cell"></td><td colspan="5">会員番号</td><td class="marked_cell"></td></tr>';
+	tableElement.innerHTML = headerItem;
+
+	memberInfo = makeTableRow('td class="mark_cell"', ' , , , , , , ',  'row');
+
+	for (var y=0; y<10; y++) {
+		var row = '';
+		for (var i=0; i<=6; i++) {
+			row += y + ',';
+		}
+		rowItem = makeTableRow('td class="mark_cell"', row.substr(0, row.length-1), 'row');
+		memberInfo += rowItem;
+	}
+	tableElement.innerHTML += memberInfo;
 	document.getElementById('id_area').appendChild(tableElement);
 }
 
@@ -51,7 +55,7 @@ function createMarkArea() {
 		var rows = '';
 		var markSheet = document.createElement('table');
 		markSheet.className = 'mark_sheet';
-		markSheet.innerHTML = '<tr><td>問</td><td colspan="10">解答記入欄</td></tr>';
+		markSheet.innerHTML = '<tr class="row"><td>問</td><td class="marked_cell"></td><td colspan="8">解答記入欄</td><td class="marked_cell"></td></tr>';
 		for (var q = q_cnt; q < q_cnt + 20; q++) {
 			rows += '<tr class="row"><td class="mark_cell_index">' + q + '</td>' + mark_temple + '</tr>';
 		}

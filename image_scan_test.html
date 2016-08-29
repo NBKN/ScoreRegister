@@ -3,20 +3,22 @@
 <head>
 <meta charset='utf-8'>
 <title>成績入力</title>
-<script type="text/javascript" charset="utf-8" src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/pdf_scan.js"></script>
-
 </head>
 <body>
 	<div id="container">
-		<input type="file" multiple id="file">
+		<label>正解データ</label>
+		<input type="file" id="ans_file">
+		<label>解答データ</label>
+		<input type="file" multiple id="input_files">
+
 		<div id="output"></div>
 		<button onclick="init()">aaa</button>
 	</div>
 	<div id="cursor"></div>
-	<canvas id="canvas"></canvas>
-	<canvas id="canvas_result"></canvas>
-
+	<div id="scaned_data"></div>
 </body>
 
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>マークシート作成</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="js/make_mark_sheet.js"></script>
+<link rel="stylesheet" type="text/css" href="css/mark_sheet.css">
+</head>
+<body>
+	<div class="noprint">
+		<button onclick="doPrint()">マークシート印刷</button>
+	</div>
+	<div class="print_page">
+		<div class="header_area">
+			<div id="name_area"></div>
+		</div>
+		<div class="mark_area">
+		<div id="id_area"></div>
+			<div id="mark_sheet_area"></div>
+		</div>
+	</div>
+	<div class="no_print"></div>
+</body>
+</html>

@@ -10,6 +10,9 @@
 }
 
 @media print {
+	.print_page {
+		size: landscape;
+	}
 	.noprint {
 		display: none;
 	}

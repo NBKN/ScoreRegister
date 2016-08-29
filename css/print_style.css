@@ -1,7 +1,9 @@
 @charset "utf-8";
 .print_page {
-	width: 172mm;
-	height: 251mm;
+	width: 251mm;
+	height: 172mm;
+	size: landscape;
+	margin: 0px 0px 0px 50px;
 	page-break-after: always;
 }
 
@@ -11,7 +13,7 @@
 
 @media print {
 	.print_page {
-		size: landscape;
+
 	}
 	.noprint {
 		display: none;

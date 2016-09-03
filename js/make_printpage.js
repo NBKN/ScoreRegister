@@ -22,7 +22,7 @@ function doPrint() {
  * 各会員の印刷ページを作成
  */
 function makePrintSection(st_dataArray) {
-	var checkBoxArray = checkboxTable.getDataAtCol(0);
+	var checkBoxArray = handsonTable.getDataAtCol(0);
 	var article = document.getElementById("article");
 
 	for (var i = 0; i < st_dataArray.length; i++) {
@@ -108,14 +108,14 @@ function makeTableRow(tag, item) {
  */
 function makePrintData() {
 	var cols = handsonTable.countCols();
-	var memberSize = removeNullFromArray(handsonTable.getDataAtCol(0)).length;
+	var memberSize = removeNullFromArray(handsonTable.getDataAtCol(1)).length;
 
 	var aveArray = [];
 	var mediArray = [];
 	var scoreArray = [];
 	var rankArray = [];
 
-	for (var subjectIndex = 2; subjectIndex < cols; subjectIndex++) {
+	for (var subjectIndex = 3; subjectIndex < cols; subjectIndex++) {
 		var subjectName = handsonTable.getColHeader(subjectIndex);
 		scoreArray[subjectName] = removeNullFromArray(handsonTable
 				.getDataAtCol(subjectIndex));
@@ -138,13 +138,13 @@ function makePrintData() {
 		var mamberData = handsonTable.getDataAtRow(memberIndex);
 		output[memberIndex] = [];
 
-		var memberId = mamberData[0];
+		var memberId = mamberData[1];
 		output[memberIndex].push(memberId);
 
-		var name = mamberData[1];
+		var name = mamberData[2];
 		output[memberIndex].push(name);
 
-		for (var subjectIndex = 2; subjectIndex < cols; subjectIndex++) {
+		for (var subjectIndex = 3; subjectIndex < cols; subjectIndex++) {
 			var score = mamberData[subjectIndex];
 
 			if (score != null && score != '') {

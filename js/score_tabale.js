@@ -3,7 +3,6 @@ var columsOption = [];
 
 function initMyTable(dataArray) {
 	createTable(dataArray);
-	createChackBoxTable();
 }
 
 /**
@@ -11,13 +10,21 @@ function initMyTable(dataArray) {
  */
 function getHedersInfo() {
 	var headersInfoArray = loadHedersInfo();
-
+	/* チェックボックス用のヘッダーとカラムオプションq
+	 * を作成 */
+	headerTitle.push(' ');
+	columsOption.push({
+		type : 'checkbox'
+	});
+	/* 各要素のヘッダーとカラムオプション作成 */
+	var index = 0;
 	headersInfoArray.forEach(function(hedersInfo) {
 		headerTitle.push(hedersInfo[0]);
 		var option = {};
 		option['readOnly'] = hedersInfo[1];
 		option['type'] = hedersInfo[2];
 		columsOption.push(option);
+		index++;
 	});
 	headerTitle = removeNullFromArray(headerTitle);
 	columsOption = removeNullFromArray(columsOption);
@@ -28,6 +35,9 @@ function getHedersInfo() {
  */
 function createTable(dataArray) {
 	getHedersInfo();
+	dataArray.forEach(function(data) {
+		data.unshift('true');
+	});
 	var gridContainer = document.getElementById('grid');
 	handsonTable = new Handsontable(gridContainer, {
 		data : dataArray,
@@ -49,41 +59,17 @@ function createTable(dataArray) {
 
 function save() {
 	var arrayData = handsonTable.getData();
-	saveLocalStorage_Score(arrayData);
-}
-
-/**
- * 印刷チェックボックス用の表を作成
- */
-var allChecked = [];
-function createChackBoxTable() {
-	var rows = handsonTable.countRows();
-	for (var i = 0; i < rows; i++) {
-		allChecked.push([ true ]);
-	}
-
-	var gridContainer = document.getElementById('checkbox_table');
-	checkboxTable = new Handsontable(gridContainer, {
-		data : allChecked,
-		startRows : 10,
-		startCols : 10,
-		colWidths : 30,
-		rowHeigts : handsonTable.getRowHeight(0),
-		colHeaders : true,
-		fillHandle : false,
-		maxRows : rows,
-		colHeaders : [ '　　　　' ], // 成績入力表のヘッダーの高さと揃えるために空白を入れておく
-		columns : [ {
-			type : 'checkbox'
-		} ]
+	arrayData.forEach(function(data) {
+		data.shift();
 	});
+	saveLocalStorage_Score(arrayData);
 }
 
 /**
  * チェックボックスを全件チェックor解除
  */
 function allCheck(check) {
-	for (var i = 0; i < checkboxTable.countRows(); i++) {
-		checkboxTable.setDataAtCell(i, 0, check);
+	for (var i = 0; i < handsonTable.countRows(); i++) {
+		handsonTable.setDataAtCell(i, 0, check);
 	}
 }

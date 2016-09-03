@@ -25,6 +25,7 @@ function exportData() {
 
 function importData(str) {
 	var dataArray = convertCSV2Array(str);
+	dataArray = removeNullFromArray(dataArray);
 	saveLocalStorage_Score(dataArray);
 	alert('データの読み込みに成功しました！');
 }
@@ -38,7 +39,7 @@ function initFileLoadBtn() {
 	importBtn.addEventListener("change", function(evt) {
 		var file = evt.target.files;
 		var reader = new FileReader();
-		reader.readAsText(file[0]);
+		reader.readAsText(file[0], 'shift-jis');
 		reader.onload = function(ev) {
 			importData(reader.result);
 		}
@@ -65,7 +66,7 @@ function initDroppable() {
 		fileReader.onload = function(event) {
 			importData(event.target.result);
 		}
-		fileReader.readAsText(file);
+		fileReader.readAsText(file, 'shift-jis');
 		cancelEvent(event);
 		return false;
 	}

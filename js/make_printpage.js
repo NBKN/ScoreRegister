@@ -68,10 +68,10 @@ function makeMemberInfo(st_data) {
  * 成績情報テーブル作成
  */
 function makeScoreInfo(st_data) {
-	var scoreInfo = ",得点,偏差値,順位,平均,中央値";
+	var scoreInfo = "科目,得点,偏差値,順位,平均,中央値";
 	scoreInfo = makeTableRow("th", scoreInfo);
 
-	for (var i = 2; i < st_data.length; i++) {
+	for (var i = 1; i < st_data.length; i++) {
 		var rowItem = makeTableRow("td", st_data[i]);
 		if (rowItem != null) {
 			scoreInfo += rowItem;

@@ -87,8 +87,7 @@ function initMyFilter() {
 
 	$('table').simpleTableFilter({
 		filters : {
-			1 : '#id-filter',
-			2 : '#name-filter'
+			1 : '#name-filter'
 		}
 	});
 }

@@ -59,13 +59,13 @@ function doScan(url, type) {
 // scanMemberID();
 			if(type == 0) {
 				answerMesh = scanMarkSheet();
-				answerMesh = modisyMesh(answerMesh);
+				// answerMesh = modisyMesh(answerMesh);
 // findStandardMark(context);
 			}
 
 			if(type == 1) {
 				var tmpMesh = scanMarkSheet();
-				tmpMesh = modisyMesh(tmpMesh);
+				// tmpMesh = modisyMesh(tmpMesh);
 				resultMesh[resultCnt] = checkAnswer(tmpMesh);
 				resultCnt++;
 			}
@@ -110,20 +110,20 @@ function scanMarkSheet() {
 function modisyMesh(mesh) {
 	var result = [];
 	var r_x = 0;
-	for (var x = 1; x < mesh.length - 1; x+=1) {
+	for (var x = 1; x < mesh.length - 1; x+=2) {
 		result[r_x] = [];
 		var r_y = 0;
-		for (var y = 1; y < mesh[x].length - 1; y+=1) {
+		for (var y = 1; y < mesh[x].length - 1; y+=2) {
 			var sum = 0;
 			for(var k=-1; k<=1; k++) {
 				for(var l=-1; l<=1; l++){
 					sum += mesh[x + k][y + l];
 				}
 			}
-			// if(sum/9 == 1)
-				// result[r_x][r_y] = 1;
-			// else 
-				// result[r_x][r_y] = 0;
+			if(sum/9 == 1)
+				result[r_x][r_y] = 1;
+			else 
+				result[r_x][r_y] = 0;
 			r_y++;
 		}
 		r_x++;

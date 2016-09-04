@@ -25,8 +25,9 @@ function makePrintSection(st_dataArray) {
 	var checkBoxArray = handsonTable.getDataAtCol(0);
 	var article = document.getElementById("article");
 	for (var i = 0; i < checkBoxArray.length; i++) {
-		var rowLength = removeNullFromArray(st_dataArray[i]).length - 1;
-		if(checkBoxArray[i] == false || rowLength == 0) {
+		var tmpName = st_dataArray[i]['name'];
+		var tmpSum = st_dataArray[i]['score'][getHeaderName('sum')];
+		if (checkBoxArray[i] == false || isNullString(tmpName) || isNullString(tmpSum)) {
 			continue;
 		}
 		var st_data = st_dataArray[i];
@@ -35,7 +36,7 @@ function makePrintSection(st_dataArray) {
 		sectionElement.innerHTML = '<h1 class="print_title">成績表</h1>';
 
 		sectionElement.appendChild(makeMemberInfo(st_data));
-		sectionElement.appendChild(makeScoreInfo(st_data));
+		sectionElement.appendChild(makeScoreInfo(st_data['score']));
 
 		article.appendChild(sectionElement);
 	}
@@ -50,11 +51,13 @@ function makePrintSection(st_dataArray) {
  * 会員情報部分テーブル作成
  */
 function makeMemberInfo(st_data) {
-	var name = st_data[0];
+	var id = st_data['id'];
+	var name = st_data['name'];
+	var type = st_data['type'];
 
-	var headerItem = "会員番号,名前";
+	var headerItem = "番号,名前,文理区分";
 	headerItem = makeTableRow("th", headerItem);
-	var rowItem =  "," + name;
+	var rowItem = id + ',' + name + ',' + type;
 	rowItem = makeTableRow("td", rowItem);
 
 	var memberInfo = headerItem + rowItem;
@@ -68,12 +71,12 @@ function makeMemberInfo(st_data) {
 /**
  * 成績情報テーブル作成
  */
-function makeScoreInfo(st_data) {
+function makeScoreInfo(scoreData) {
 	var scoreInfo = "科目,得点,偏差値,順位,平均,中央値";
 	scoreInfo = makeTableRow("th", scoreInfo);
 
-	for (var i = 1; i < st_data.length; i++) {
-		var rowItem = makeTableRow("td", st_data[i]);
+	for (var key in scoreData) {
+		var rowItem = makeTableRow("td", scoreData[key]);
 		if (rowItem != null) {
 			scoreInfo += rowItem;
 		}
@@ -114,7 +117,8 @@ function makePrintData() {
 	var scoreArray = [];
 	var rankArray = [];
 
-	for (var subjectIndex = 2; subjectIndex < cols; subjectIndex++) {
+	/* もろもろ計算 */
+	for (var subjectIndex = startSubject; subjectIndex < cols; subjectIndex++) {
 		var subjectName = handsonTable.getColHeader(subjectIndex);
 		scoreArray[subjectName] = removeNullFromArray(handsonTable
 				.getDataAtCol(subjectIndex));
@@ -132,35 +136,40 @@ function makePrintData() {
 		});
 	}
 
+	/* 出力データ作成 */
 	var output = [];
 	for (var memberIndex = 0; memberIndex < memberSize; memberIndex++) {
 		var mamberData = handsonTable.getDataAtRow(memberIndex);
 		output[memberIndex] = [];
 
-		var name = mamberData[1];
-		output[memberIndex].push(name);
+		var id = mamberData[headerIndex['id']];
+		var name = mamberData[headerIndex['name']];
+		var type = mamberData[headerIndex['type']];
+		output[memberIndex]['id'] = id;
+		output[memberIndex]['name'] = name;
+		output[memberIndex]['type'] = type;
 
-		for (var subjectIndex = 2; subjectIndex < cols; subjectIndex++) {
+		var output_score = [];
+		for (var subjectIndex = startSubject; subjectIndex < cols; subjectIndex++) {
 			var score = mamberData[subjectIndex];
-
-			if (score != null && score != '') {
+			if (!isNullString(score)) {
 				var subjectName = handsonTable.getColHeader(subjectIndex);
 				var scoreData;
-				if(subjectIndex == cols - 2) {
-					scoreData  = subjectName + ',' + score + ',-,-,-,-';
+				if (subjectName == getHeaderName('sum')) {
+					scoreData = subjectName + ',' + score + ',-,-,-,-';
+				} else {
+					var ss = standard_score(score, scoreArray[subjectName]);
+					var rank = getRank(score, rankArray[subjectName],
+							mediArray[subjectName])
+							+ '/' + rankArray[subjectName].length;
+					scoreData = subjectName + ',' + score + ',' + ss + ','
+							+ rank + ',' + aveArray[subjectName] + ','
+							+ mediArray[subjectName];
 				}
-				else {
-				var ss = standard_score(score, scoreArray[subjectName]);
-				var rank = getRank(score, rankArray[subjectName],
-						mediArray[subjectName])
-						+ '/' + rankArray[subjectName].length;
-				scoreData = subjectName + ',' + score + ',' + ss + ','
-						+ rank + ',' + aveArray[subjectName] + ','
-						+ mediArray[subjectName];
-				}
-				output[memberIndex].push(scoreData);
+				output_score[subjectName] = scoreData;
 			}
 		}
+		output[memberIndex]['score'] = output_score;
 	}
 	return output;
 }

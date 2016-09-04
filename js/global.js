@@ -85,6 +85,10 @@ function getHederIndex(easyName) {
 	return -1;
 }
 
+function getHeaderName(easyName) {
+	return defaultHeaderDefine[easyName][0];
+}
+
 function saveLocalStorage_Score(dataArray) {
 	localStorage.setItem(SCORE_SAVEKEY, JSON.stringify(dataArray));
 }
@@ -150,4 +154,11 @@ function convertArray2CSV(array) {
 function floatFormat(number, n) {
 	var _pow = Math.pow(10, n);
 	return Math.round(number * _pow) / _pow;
+}
+
+function isNullString(str) {
+	if(str == null || str == '' || str == 'undefined' || str.length == 0) {
+		return true;
+	}
+	return false;
 }

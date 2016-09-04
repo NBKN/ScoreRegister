@@ -8,17 +8,24 @@ function initDataTab() {
  */
 function exportData() {
 	var bom = new Uint8Array([ 0xEF, 0xBB, 0xBF ]);
+	var output = [];
+	var headerArray = removeNullFromArray(itemSettingTable.getDataAtCol(0));
 	var dataArray = loadLocalStorage_Score();
-	dataArray = convertArray2CSV(dataArray);
-	var blob = new Blob([ bom, dataArray ], {
-		"type" : "text/csv"
+	output.push(headerArray);
+	for(var i=0; i<dataArray.length; i++) {
+		output.push(dataArray[i]);
+	}
+	output = convertArray2CSV(output);
+
+	var blob = new Blob([ bom, output ], {
+		'type' : 'text/csv'
 	});
 
 	if (window.navigator.msSaveBlob) {
-		window.navigator.msSaveBlob(blob, "score_data.csv");
-		window.navigator.msSaveOrOpenBlob(blob, "score_data.csv");
+		window.navigator.msSaveBlob(blob, 'score_data.csv');
+		window.navigator.msSaveOrOpenBlob(blob, 'score_data.csv');
 	} else {
-		document.getElementById("download").href = window.URL
+		document.getElementById('download').href = window.URL
 				.createObjectURL(blob);
 	}
 }
@@ -36,7 +43,7 @@ function importData(str) {
 function initFileLoadBtn() {
 	var importBtn = document.getElementById('import');
 	// ダイアログでファイルが選択された時
-	importBtn.addEventListener("change", function(evt) {
+	importBtn.addEventListener('change', function(evt) {
 		var file = evt.target.files;
 		var reader = new FileReader();
 		reader.readAsText(file[0], 'shift-jis');
@@ -50,15 +57,15 @@ function initFileLoadBtn() {
  * ファイルをドロップした時の動作
  */
 function initDroppable() {
-	var droppable = $("#droppable");
+	var droppable = $('#droppable');
 	var cancelEvent = function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		return false;
 	}
 
-	droppable.bind("dragenter", cancelEvent);
-	droppable.bind("dragover", cancelEvent);
+	droppable.bind('dragenter', cancelEvent);
+	droppable.bind('dragover', cancelEvent);
 
 	var handleDroppedFile = function(event) {
 		var file = event.originalEvent.dataTransfer.files[0];
@@ -70,9 +77,12 @@ function initDroppable() {
 		cancelEvent(event);
 		return false;
 	}
-	droppable.bind("drop", handleDroppedFile);
+	droppable.bind('drop', handleDroppedFile);
 }
 
 function deleteData() {
-	localStorage.removeItem(SCORE_SAVEKEY);
+	if (window.confirm('データを削除します')) {
+		localStorage.removeItem(SCORE_SAVEKEY);
+
+	}
 }

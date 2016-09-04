@@ -30,12 +30,14 @@ var average = function(data, fn) {
 
 var median = function(data, fn) {
 	var half = (data.length / 2) | 0;
-	var temp = data.sort(fn);
-
-	if (temp.length % 2) {
-		return temp[half];
+	data.sort(function(a, b) {
+		return (parseInt(a) > parseInt(b)) ? 1 : -1;
+	});
+	if (data.length % 2) {
+		return data[half];
 	}
-	return (temp[half - 1] + temp[half]) / 2;
+
+	return (data[half - 1] + data[half]) / 2;
 };
 
 var variance = function(data, fn) {

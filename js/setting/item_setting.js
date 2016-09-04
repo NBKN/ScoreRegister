@@ -27,14 +27,16 @@ function createTable() {
 }
 
 function saveHeaderData() {
-	var headerInfoArray = itemSettingTable.getData();
-	var saveData = [];
-	headerInfoArray.forEach(function(hedersInfo) {
-		if (hedersInfo[0] != null && hedersInfo[0].length > 0) {
-			saveData.push(hedersInfo);
-		}
-	});
-	localStorage.setItem(HEADER_SAVEKEY, JSON.stringify(saveData));
+	if (window.confirm('既に入力されている表データとズレてしまいますが\nよろしいですか？')) {
+		var headerInfoArray = itemSettingTable.getData();
+		var saveData = [];
+		headerInfoArray.forEach(function(hedersInfo) {
+			if (hedersInfo[0] != null && hedersInfo[0].length > 0) {
+				saveData.push(hedersInfo);
+			}
+		});
+		localStorage.setItem(HEADER_SAVEKEY, JSON.stringify(saveData));
+	}
 }
 
 function resetData() {

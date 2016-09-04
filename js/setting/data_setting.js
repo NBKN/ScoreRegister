@@ -83,6 +83,5 @@ function initDroppable() {
 function deleteData() {
 	if (window.confirm('データを削除します')) {
 		localStorage.removeItem(SCORE_SAVEKEY);
-
 	}
 }

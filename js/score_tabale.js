@@ -10,8 +10,9 @@ function initMyTable(dataArray) {
  */
 function getHedersInfo() {
 	var headersInfoArray = loadHedersInfo();
-	/* チェックボックス用のヘッダーとカラムオプションq
-	 * を作成 */
+	/*
+	 * チェックボックス用のヘッダーとカラムオプションを作成
+	 */
 	headerTitle.push(' ');
 	columsOption.push({
 		type : 'checkbox'
@@ -49,19 +50,21 @@ function createTable(dataArray) {
 		colHeaders : headerTitle,
 		columns : columsOption
 	});
-
-	/* 編集するたびに保存する */
+	/* 編集するたびに実行 */
 	handsonTable.updateSettings({
 		afterChange : function(changes, source) {
-			if(changes[0][1] != handsonTable.countCols()-1
-				&& changes[0][1] != handsonTable.countCols()-2) {
+			var rowNum = changes[0][0];
+			var colNum = changes[0][1];
+			if (colNum != headerIndex['sum'] && colNum != headerIndex['per']
+					&& handsonTable.getColHeader(colNum) != '') {
 				save();
-				calcSum(changes[0][0]);
+				calcSum(rowNum);
 			}
 		}
 	});
 }
 
+/* 保存 */
 function save() {
 	var arrayData = handsonTable.getData();
 	arrayData.forEach(function(data) {
@@ -70,23 +73,30 @@ function save() {
 	saveLocalStorage_Score(arrayData);
 }
 
+/* 合計値と得点率を計算 */
 function calcSum(rowNum) {
 	var arrayData = handsonTable.getDataAtRow(rowNum);
 	var length = handsonTable.countCols();
-	var sum = 0;
+	var sum = 0, percentage = 0;
 	var maxSum = 0;
-	for(var i=2; i<length-2; i++) {
-		if(arrayData[i] != null && arrayData[i] != '') {
-			sum += arrayData[i];
-			maxSum += maxScore[i-2];
+	for (var i = startSubject; i <= length - endSubject; i++) {
+		var subjectName = handsonTable.getColHeader(i);
+		if (arrayData[i] != null && arrayData[i] != '') {
+			sum += Number(arrayData[i]);
+			maxSum += Number(maxScore[subjectName]);
 		}
 	}
-	if(sum != 0) {
-		// 合計
-		handsonTable.setDataAtCell(rowNum, length-2, sum + '/' + maxSum);
-		// 得点率
-		handsonTable.setDataAtCell(rowNum, length-1, floatFormat((sum/maxSum)*100, 1));
+	if (sum == 0) {
+		percentage = '';
+		sum = '';
+	} else {
+		percentage = floatFormat((sum / maxSum) * 100, 1);
+		sum = sum + '/' + maxSum;
 	}
+	// 合計
+	handsonTable.setDataAtCell(rowNum, headerIndex['sum'], sum);
+	// 得点率
+	handsonTable.setDataAtCell(rowNum, headerIndex['per'], percentage);
 }
 
 /**

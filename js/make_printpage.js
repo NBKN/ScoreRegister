@@ -144,13 +144,19 @@ function makePrintData() {
 
 			if (score != null && score != '') {
 				var subjectName = handsonTable.getColHeader(subjectIndex);
+				var scoreData;
+				if(subjectIndex == cols - 2) {
+					scoreData  = subjectName + ',' + score + ',-,-,-,-';
+				}
+				else {
 				var ss = standard_score(score, scoreArray[subjectName]);
 				var rank = getRank(score, rankArray[subjectName],
 						mediArray[subjectName])
 						+ '/' + rankArray[subjectName].length;
-				var scoreData = subjectName + ',' + score + ',' + ss + ','
+				scoreData = subjectName + ',' + score + ',' + ss + ','
 						+ rank + ',' + aveArray[subjectName] + ','
 						+ mediArray[subjectName];
+				}
 				output[memberIndex].push(scoreData);
 			}
 		}

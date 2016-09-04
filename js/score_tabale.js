@@ -49,10 +49,15 @@ function createTable(dataArray) {
 		colHeaders : headerTitle,
 		columns : columsOption
 	});
+
 	/* 編集するたびに保存する */
 	handsonTable.updateSettings({
 		afterChange : function(changes, source) {
-			save();
+			if(changes[0][1] != handsonTable.countCols()-1
+				&& changes[0][1] != handsonTable.countCols()-2) {
+				save();
+				calcSum(changes[0][0]);
+			}
 		}
 	});
 }
@@ -63,6 +68,25 @@ function save() {
 		data.shift();
 	});
 	saveLocalStorage_Score(arrayData);
+}
+
+function calcSum(rowNum) {
+	var arrayData = handsonTable.getDataAtRow(rowNum);
+	var length = handsonTable.countCols();
+	var sum = 0;
+	var maxSum = 0;
+	for(var i=2; i<length-2; i++) {
+		if(arrayData[i] != null && arrayData[i] != '') {
+			sum += arrayData[i];
+			maxSum += maxScore[i-2];
+		}
+	}
+	if(sum != 0) {
+		// 合計
+		handsonTable.setDataAtCell(rowNum, length-2, sum + '/' + maxSum);
+		// 得点率
+		handsonTable.setDataAtCell(rowNum, length-1, floatFormat((sum/maxSum)*100, 1));
+	}
 }
 
 /**

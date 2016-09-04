@@ -16,11 +16,16 @@ function loadLocalStorage_Header() {
 }
 
 var defaultHeaderData = [ [ '名前', false, 'text' ],
-		[ '英語', false, 'numeric' ], [ '国語', false, 'numeric' ],
+		[ '英語', false, 'numeric' ], [ '現代文', false, 'numeric' ], 
+		[ '古典', false, 'numeric' ], [ '漢文', false, 'numeric' ],
 		[ '数ⅠA', false, 'numeric' ], [ '数ⅡB', false, 'numeric' ],
-		[ '物理', false, 'numeric' ], [ '化学', false, 'numeric' ],
-		[ '生物', false, 'numeric' ], [ '日本史', false, 'numeric' ],
-		[ '世界史', false, 'numeric' ] ];
+		[ '物理基礎', false, 'numeric' ], [ '物理', false, 'numeric' ],
+		[ '生物基礎', false, 'numeric' ], [ '生物', false, 'numeric' ], [ '化学基礎', false, 'numeric' ],
+		[ '化学', false, 'numeric' ], [ '日本史', false, 'numeric' ],
+		[ '世界史', false, 'numeric' ], [ '合計得点', true, 'text' ], [ '得点率(%)', true, 'text' ] ];
+
+var maxScore = [200, 100, 50, 50, 100, 100, 50, 100, 50, 100, 50, 100, 100, 100];
+
 function loadHedersInfo() {
 	var headerData = loadLocalStorage_Header();
 	if (headerData == null) {
@@ -69,4 +74,9 @@ function convertArray2CSV(array) {
 		}
 	}
 	return csv;
+}
+
+function floatFormat(number, n) {
+	var _pow = Math.pow(10 , n) ;
+	return Math.round(number * _pow) / _pow ;
 }

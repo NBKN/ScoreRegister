@@ -29,7 +29,7 @@ var width, height, pixels, r, g, b;
 var answerMesh;
 var resultMesh = [];
 var resultCnt = 0;
-var debug = false;
+var debug = true;
 
 function doScan(url, type) {
 	PDFJS.getDocument(url).then(function(pdf) {
@@ -110,20 +110,20 @@ function scanMarkSheet() {
 function modisyMesh(mesh) {
 	var result = [];
 	var r_x = 0;
-	for (var x = 1; x < mesh.length - 1; x+=2) {
+	for (var x = 1; x < mesh.length - 1; x+=1) {
 		result[r_x] = [];
 		var r_y = 0;
-		for (var y = 1; y < mesh[x].length - 1; y+=2) {
+		for (var y = 1; y < mesh[x].length - 1; y+=1) {
 			var sum = 0;
 			for(var k=-1; k<=1; k++) {
 				for(var l=-1; l<=1; l++){
 					sum += mesh[x + k][y + l];
 				}
 			}
-			if(sum/9 == 1)
-				result[r_x][r_y] = 1;
-			else 
-				result[r_x][r_y] = 0;
+			// if(sum/9 == 1)
+				// result[r_x][r_y] = 1;
+			// else 
+				// result[r_x][r_y] = 0;
 			r_y++;
 		}
 		r_x++;

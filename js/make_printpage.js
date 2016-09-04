@@ -25,7 +25,8 @@ function makePrintSection(st_dataArray) {
 	var checkBoxArray = handsonTable.getDataAtCol(0);
 	var article = document.getElementById("article");
 	for (var i = 0; i < checkBoxArray.length; i++) {
-		if(checkBoxArray[i] == false) {
+		var rowLength = removeNullFromArray(st_dataArray[i]).length - 1;
+		if(checkBoxArray[i] == false || rowLength == 0) {
 			continue;
 		}
 		var st_data = st_dataArray[i];
@@ -144,13 +145,19 @@ function makePrintData() {
 
 			if (score != null && score != '') {
 				var subjectName = handsonTable.getColHeader(subjectIndex);
+				var scoreData;
+				if(subjectIndex == cols - 2) {
+					scoreData  = subjectName + ',' + score + ',-,-,-,-';
+				}
+				else {
 				var ss = standard_score(score, scoreArray[subjectName]);
 				var rank = getRank(score, rankArray[subjectName],
 						mediArray[subjectName])
 						+ '/' + rankArray[subjectName].length;
-				var scoreData = subjectName + ',' + score + ',' + ss + ','
+				scoreData = subjectName + ',' + score + ',' + ss + ','
 						+ rank + ',' + aveArray[subjectName] + ','
 						+ mediArray[subjectName];
+				}
 				output[memberIndex].push(scoreData);
 			}
 		}

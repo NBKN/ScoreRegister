@@ -25,7 +25,8 @@ function makePrintSection(st_dataArray) {
 	var checkBoxArray = handsonTable.getDataAtCol(0);
 	var article = document.getElementById("article");
 	for (var i = 0; i < checkBoxArray.length; i++) {
-		if(checkBoxArray[i] == false) {
+		var rowLength = removeNullFromArray(st_dataArray[i]).length - 1;
+		if(checkBoxArray[i] == false || rowLength == 0) {
 			continue;
 		}
 		var st_data = st_dataArray[i];
